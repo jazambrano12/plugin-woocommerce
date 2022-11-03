@@ -123,10 +123,16 @@ function sendBluexData(){
 			)
 		)); 
 
+		$cadena = str_replace(
+            array('Á', 'À', 'Â', 'Ä', 'á', 'à', 'ä', 'â', 'ª','É', 'È', 'Ê', 'Ë', 'é', 'è', 'ë', 'ê','Í', 'Ì', 'Ï', 'Î', 'í', 'ì', 'ï', 'î','Ó', 'Ò', 'Ö', 'Ô', 'ó', 'ò', 'ö', 'ô','Ú', 'Ù', 'Û', 'Ü', 'ú', 'ù', 'ü', 'û','Ñ', 'ñ', 'Ç', 'ç'),
+            array('A', 'A', 'A', 'A', 'a', 'a', 'a', 'a', 'a','E', 'E', 'E', 'E', 'e', 'e', 'e', 'e','I', 'I', 'I', 'I', 'i', 'i', 'i', 'i','O', 'O', 'O', 'O', 'o', 'o', 'o', 'o','U', 'U', 'U', 'U', 'u', 'u', 'u', 'u','N', 'n', 'C', 'c'),
+            $destinatario['_shipping_city'][0]
+        );
+
 		$bxGeo = json_decode($comunasGeo['body']);
 			foreach($bxGeo->data[0]->states as $indice=>$bxData){
 				foreach($bxData->ciudades as $indiceC=>$bxDataC){
-					if(strtolower($bxDataC->name)==strtolower($destinatario['_shipping_city'][0])){
+					if(strtolower($bxDataC->name)==strtolower($cadena)){
 						$dadospedido['regionCode'] 		= $bxData->code;
 						$dadospedido['cidadeName'] 		= $bxDataC->name;
 						$dadospedido['cidadeCode'] 		= $bxDataC->code;
@@ -136,7 +142,7 @@ function sendBluexData(){
 				if($dadospedido['cidadeName'] == ''){
 					foreach($bxData->ciudades as $indiceC=>$bxDataC){
 						foreach($bxDataC->districts as $indiceD=>$bxDataD){
-							if(strtolower($bxDataD->name)==strtolower($destinatario['_shipping_city'][0])){
+							if(strtolower($bxDataD->name)==strtolower($cadena)){
 								$dadospedido['regionCode'] 		= $bxData->code;
 								$dadospedido['cidadeName'] 		= $bxDataC->name;
 								$dadospedido['cidadeCode'] 		= $bxDataC->code;

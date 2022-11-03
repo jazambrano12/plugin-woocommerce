@@ -463,11 +463,17 @@ class WC_Correios_Webservice {
 		  ),
 		));
 
+		$cadena = str_replace(
+            array('Á', 'À', 'Â', 'Ä', 'á', 'à', 'ä', 'â', 'ª','É', 'È', 'Ê', 'Ë', 'é', 'è', 'ë', 'ê','Í', 'Ì', 'Ï', 'Î', 'í', 'ì', 'ï', 'î','Ó', 'Ò', 'Ö', 'Ô', 'ó', 'ò', 'ö', 'ô','Ú', 'Ù', 'Û', 'Ü', 'ú', 'ù', 'ü', 'û','Ñ', 'ñ', 'Ç', 'ç'),
+            array('A', 'A', 'A', 'A', 'a', 'a', 'a', 'a', 'a','E', 'E', 'E', 'E', 'e', 'e', 'e', 'e','I', 'I', 'I', 'I', 'i', 'i', 'i', 'i','O', 'O', 'O', 'O', 'o', 'o', 'o', 'o','U', 'U', 'U', 'U', 'u', 'u', 'u', 'u','N', 'n', 'C', 'c'),
+            $this->package['destination']['city'] 
+        );
+
 		$bxGeo = json_decode(curl_exec($curl));
 		curl_close($curl);
 		foreach($bxGeo->data[0]->states as $indice=>$bxData){ 
 				foreach($bxData->ciudades as $indiceC=>$bxDataC){
-					if(strtolower($bxDataC->name)==strtolower($this->package['destination']['city'])){
+					if(strtolower($bxDataC->name)==strtolower($cadena)){
 						$dadosGeo['regionCode'] 	= $bxData->code;
 						$dadosGeo['cidadeName'] 	= $bxDataC->name;
 						$dadosGeo['cidadeCode'] 	= $bxDataC->code;
@@ -477,7 +483,7 @@ class WC_Correios_Webservice {
 				if($dadosGeo['cidadeName'] == ''){
 					foreach($bxData->ciudades as $indiceC=>$bxDataC){
 						foreach($bxDataC->districts as $indiceD=>$bxDataD){
-							if(strtolower($bxDataD->name)==strtolower($this->package['destination']['city'])){
+							if(strtolower($bxDataD->name)==strtolower($cadena)){
 								$dadosGeo['regionCode'] 	= $bxData->code;
 								$dadosGeo['cidadeName'] 	= $bxDataC->name;
 								$dadosGeo['cidadeCode'] 	= $bxDataC->code;
