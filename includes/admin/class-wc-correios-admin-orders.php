@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Correios orders.
  */
-class WC_Correios_Admin_Orders {
+class WC_Correios_AdminOrders {
 
 	/**
 	 * Initialize the order actions.
@@ -44,7 +44,7 @@ class WC_Correios_Admin_Orders {
 				$the_order = wc_get_order( $post->ID );
 			}
 
-			$codes = wc_correios_get_tracking_codes( $the_order );
+			$codes = wc_correios_getTrackingCodes( $the_order );
 			if ( ! empty( $codes ) ) {
 				$tracking_codes = array();
 				foreach ( $codes as $code ) {
@@ -89,7 +89,7 @@ class WC_Correios_Admin_Orders {
 	 * @param WC_Post $post Post data.
 	 */
 	public function metabox_content( $post ) {
-		$tracking_codes = wc_correios_get_tracking_codes( $post->ID );
+		$tracking_codes = wc_correios_getTrackingCodes( $post->ID );
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		wp_enqueue_style( 'woocommerce-correios-orders-admin', plugins_url( 'assets/css/admin/orders' . $suffix . '.css', WC_Correios::get_main_file() ), array(), WC_CORREIOS_VERSION );
@@ -139,9 +139,9 @@ class WC_Correios_Admin_Orders {
 
 		$order = wc_get_order( $args['order_id'] );
 
-		wc_correios_update_tracking_code( $order, $args['tracking_code'] );
+		wc_correios_updateTrackingCode( $order, $args['tracking_code'] );
 
-		$tracking_codes = wc_correios_get_tracking_codes( $order );
+		$tracking_codes = wc_correios_getTrackingCodes( $order );
 
 		wp_send_json_success( $tracking_codes );
 	}
@@ -157,10 +157,10 @@ class WC_Correios_Admin_Orders {
 			'tracking_code' => FILTER_SANITIZE_STRING,
 		) );
 
-		wc_correios_update_tracking_code( $args['order_id'], $args['tracking_code'], true );
+		wc_correios_updateTrackingCode( $args['order_id'], $args['tracking_code'], true );
 
 		wp_send_json_success();
 	}
 }
 
-new WC_Correios_Admin_Orders();
+new WC_Correios_AdminOrders();

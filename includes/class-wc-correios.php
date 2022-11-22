@@ -112,7 +112,7 @@ class WC_Correios {
 	 */
 	public static function include_methods( $methods ) {
 		// Legacy method.
-		$methods['correios-legacy'] = 'WC_Correios_Shipping_Legacy';
+		$methods['correios-legacy'] = 'WC_Correios_ShippingLegacy';
 
 		// New methods.
 		if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '2.6.0', '>=' ) ) {
@@ -136,8 +136,8 @@ class WC_Correios {
 	 * @return array
 	 */
 	public static function include_emails( $emails ) {
-		if ( ! isset( $emails['WC_Correios_Tracking_Email'] ) ) {
-			$emails['WC_Correios_Tracking_Email'] = include dirname( __FILE__ ) . '/emails/class-wc-correios-tracking-email.php';
+		if ( ! isset( $emails['WC_Correios_TrackingEmail'] ) ) {
+			$emails['WC_Correios_TrackingEmail'] = include dirname( __FILE__ ) . '/emails/class-wc-correios-tracking-email.php';
 		}
 
 		return $emails;

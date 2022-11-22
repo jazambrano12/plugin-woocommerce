@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Mercadoria Econômica shipping method class.
  */
-class WC_Correios_Shipping_Mercadoria_Economica extends WC_Correios_Shipping_International {
+class WC_Correios_ShippingMercadoriaEconomica extends WC_Correios_ShippingInternational {
 
 	/**
 	 * Service code.

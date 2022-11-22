@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Correios Webservice International integration class.
  */
-class WC_Correios_Webservice_International {
+class WC_Correios_WebserviceInternational {
 
 	/**
 	 * Webservice URL.
@@ -635,7 +635,7 @@ class WC_Correios_Webservice_International {
 			}
 		} elseif ( $response['response']['code'] >= 200 && $response['response']['code'] < 300 ) {
 			try {
-				$result = wc_correios_safe_load_xml( $response['body'], LIBXML_NOCDATA );
+				$result = wc_correios_safeLoadXml( $response['body'], LIBXML_NOCDATA );
 			} catch ( Exception $e ) {
 				if ( 'yes' === $this->debug ) {
 					$this->log->add( $this->id, 'BlueX WebServices invalid XML: ' . $e->getMessage() );

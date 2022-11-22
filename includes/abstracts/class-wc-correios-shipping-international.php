@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * This is a abstract method with default options for all methods.
  */
-abstract class WC_Correios_Shipping_International extends WC_Correios_Shipping {
+abstract class WC_Correios_ShippingInternational extends WC_Correios_Shipping {
 
 	/**
 	 * Initialize the Correios shipping method.
@@ -155,7 +155,7 @@ abstract class WC_Correios_Shipping_International extends WC_Correios_Shipping {
 	 * @return SimpleXMLElement|null
 	 */
 	protected function get_rate( $package ) {
-		$api = new WC_Correios_Webservice_International( $this->id, $this->instance_id );
+		$api = new WC_Correios_WebserviceInternational( $this->id, $this->instance_id );
 		$api->set_debug( $this->debug );
 		$api->set_service( $this->get_code() );
 		$api->set_package( $package );
@@ -174,7 +174,7 @@ abstract class WC_Correios_Shipping_International extends WC_Correios_Shipping {
 	 * @param array $package Order package.
 	 */
 	public function calculate_shipping( $package = array() ) {
-		$api = new WC_Correios_Webservice_International( $this->id, $this->instance_id );
+		$api = new WC_Correios_WebserviceInternational( $this->id, $this->instance_id );
 
 		// Check if valid to be calculeted.
 		if ( ! in_array( $package['destination']['country'], $api->get_allowed_countries(), true ) ) {

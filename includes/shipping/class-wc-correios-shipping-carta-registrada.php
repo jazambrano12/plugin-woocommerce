@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Carta Registrada shipping method class.
  */
-class WC_Correios_Shipping_Carta_Registrada extends WC_Correios_Shipping_Carta {
+class WC_Correios_ShippingCartaRegistrada extends WC_Correios_ShippingCarta {
 
 	/**
 	 * Initialize Carta Registrada.

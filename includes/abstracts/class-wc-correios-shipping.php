@@ -502,7 +502,7 @@ abstract class WC_Correios_Shipping extends WC_Shipping_Method {
 		}
 
 		// Display Correios errors.
-		$error_message = wc_correios_get_error_message( $error_number );
+		$error_message = wc_correiosGetErrorMessage( $error_number );
 		if ( '' !== $error_message && is_cart() ) {
 			$notice_type = ( '010' === $error_number ) ? 'notice' : 'error';
 			$notice      = '<strong>' . $this->title . ':</strong> ' . esc_html( $error_message );
@@ -511,7 +511,7 @@ abstract class WC_Correios_Shipping extends WC_Shipping_Method {
 
 		// Set the shipping rates.
 		$label = $this->title;
-		$cost  = wc_correios_normalize_price( esc_attr( (string) $shipping->Valor ) ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar
+		$cost  = wc_correios_normalizePrice( esc_attr( (string) $shipping->Valor ) ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar
 
 		// Exit if don't have price.
 		if ( 0 === intval( $cost ) ) {
@@ -544,11 +544,7 @@ abstract class WC_Correios_Shipping extends WC_Shipping_Method {
 		$rates = apply_filters( 'woocommerce_correios_shipping_methods', array( $rate ), $package );
 
 		// Add rate to WooCommerce.
-/*
-		echo "<pre>";
-		print_r($package);
-		echo "</pre>";
-*/
+		
 		$this->add_rate( $rates[0] );
 	}
 }

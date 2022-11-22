@@ -253,15 +253,15 @@ class WC_Correios_Integration extends WC_Integration {
 			exit;
 		}
 
-		if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'woocommerce_correios_autofill_addresses_nonce' ) ) { // WPCS: input var okay, CSRF ok.
+		if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce']  ) ), 'woocommerce_correios_autofill_addresses_nonce' ) ) { // WPCS: input var okay, CSRF ok.
 			wp_send_json_error( array( 'message' => __( 'Invalid nonce!', 'woocommerce-correios' ) ) );
 			exit;
 		}
 
-		$table_name = $wpdb->prefix . WC_Correios_Autofill_Addresses::$table;
+		$table_name = $wpdb->prefix . WC_Correios_AutofillAddresses::$table;
 		$wpdb->query( "DROP TABLE IF EXISTS $table_name;" ); // @codingStandardsIgnoreLine
 
-		WC_Correios_Autofill_Addresses::create_database();
+		WC_Correios_AutofillAddresses::create_database();
 
 		wp_send_json_success( array( 'message' => __( 'Postcode database emptied successfully!', 'woocommerce-correios' ) ) );
 	}

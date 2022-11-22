@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * SEDEX shipping method class.
  */
-class WC_Correios_Shipping_SEDEX extends WC_Correios_Shipping {
+class WC_Correios_ShippingSEDEX extends WC_Correios_Shipping {
 
 	/**
 	 * Service code.

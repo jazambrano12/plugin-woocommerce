@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Impresso Normal shipping method class.
  */
-class WC_Correios_Shipping_Impresso_Normal extends WC_Correios_Shipping_Impresso {
+class WC_Correios_ShippingImpressoNormal extends WC_Correios_ShippingImpresso {
 
 	/**
 	 * Additional cost per kg or fraction.

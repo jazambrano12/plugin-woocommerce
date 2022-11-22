@@ -404,8 +404,7 @@ class WC_Correios_Webservice {
 		$value = str_replace( '.', ',', $value );
 		return $value;
 	}
-	public function get_shipping() {
-//		error_reporting(0);
+	public function get_shipping() { 
 		$shipping = null;
 
 		$result = json_decode('{"cServico":{"Codigo":"EX","Valor":"0,00","PrazoEntrega":"0","ValorSemAdicionais":"0,00","ValorMaoPropria":"0,00","ValorAvisoRecebimento":"0,00","ValorValorDeclarado":"0,00","EntregaDomiciliar":{},"EntregaSabado":{},"obsFim":{},"Erro":"-888","MsgErro":"Erro ao calcular tarifa. Tente novamente mais tarde. Servidores indispon\u00edveis."}}');
@@ -445,32 +444,24 @@ class WC_Correios_Webservice {
 		
 		$userData = get_option('woocommerce_correios-integration_settings');
 
-		$curl = curl_init();
-		curl_setopt_array($curl, array(
-		  CURLOPT_URL => 'https://bx-tracking.bluex.cl/bx-geo/states',
-		  CURLOPT_RETURNTRANSFER => true,
-		  CURLOPT_ENCODING => '',
-		  CURLOPT_MAXREDIRS => 10,
-		  CURLOPT_TIMEOUT => 0,
-		  CURLOPT_FOLLOWLOCATION => true,
-		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => 'GET',
-		  CURLOPT_HTTPHEADER => array(
-		'Content-Type: application/json',
-				'BX-CLIENT_ACCOUNT: '.$userData['tracking_password'],
-				'BX-TOKEN: '.$userData['tracking_token'],
-				'BX-USERCODE: '.$userData['tracking_login']
-		  ),
-		));
-
+		//Busco la comuna seleccionada por el cliente 
+		$comunasGeo = wp_remote_get('https://bx-tracking.bluex.cl/bx-geo/states', array( 
+			'headers' => array(
+				'Content-Type' 		=> 'application/json',
+				'BX-CLIENT_ACCOUNT' => $userData['tracking_password'],
+				'BX-TOKEN' 			=> $userData['tracking_token'],
+				'BX-USERCODE' 		=> $userData['tracking_login']
+			)
+		));  
+        $bxGeo = json_decode($comunasGeo['body']);  
+		
 		$cadena = str_replace(
             array('Á', 'À', 'Â', 'Ä', 'á', 'à', 'ä', 'â', 'ª','É', 'È', 'Ê', 'Ë', 'é', 'è', 'ë', 'ê','Í', 'Ì', 'Ï', 'Î', 'í', 'ì', 'ï', 'î','Ó', 'Ò', 'Ö', 'Ô', 'ó', 'ò', 'ö', 'ô','Ú', 'Ù', 'Û', 'Ü', 'ú', 'ù', 'ü', 'û','Ñ', 'ñ', 'Ç', 'ç'),
             array('A', 'A', 'A', 'A', 'a', 'a', 'a', 'a', 'a','E', 'E', 'E', 'E', 'e', 'e', 'e', 'e','I', 'I', 'I', 'I', 'i', 'i', 'i', 'i','O', 'O', 'O', 'O', 'o', 'o', 'o', 'o','U', 'U', 'U', 'U', 'u', 'u', 'u', 'u','N', 'n', 'C', 'c'),
             $this->package['destination']['city'] 
         );
 
-		$bxGeo = json_decode(curl_exec($curl));
-		curl_close($curl);
+		
 		foreach($bxGeo->data[0]->states as $indice=>$bxData){ 
 				foreach($bxData->ciudades as $indiceC=>$bxDataC){
 					if(strtolower($bxDataC->name)==strtolower($cadena)){
@@ -494,36 +485,35 @@ class WC_Correios_Webservice {
 				} 
 		}
 
-		$curl = curl_init();
-		curl_setopt_array($curl, array( 
-		  CURLOPT_URL => 'https://apigw.bluex.cl/api/legacy/pricing/v1',
-		  CURLOPT_RETURNTRANSFER => true,
-		  CURLOPT_CUSTOMREQUEST => 'POST',
-		  CURLOPT_POSTFIELDS =>'{
-			"from": {
-				"country": "CL",
-				"district": "'.$userData['districtCode'].'"
-			},
-			"to": {
-				"country": "CL",
-				"state": '.$dadosGeo['regionCode'].',
-				"district": "'.$dadosGeo['districtCode'].'"
-			},
-			"serviceType": "'.$this->service.'",
-			"datosProducto": {
-				"producto": "P",
-				"familiaProducto": "PAQU",
-				"bultos": '.json_encode($bultos).'
-			  }
-		}',
-		CURLOPT_HTTPHEADER => array(
-			'Content-Type: application/json',
-			'apikey: '.$userData['tracking_bxkey'],
-			'BX-TOKEN: '.$userData['tracking_token']
-		  ),
-	  	));
-
-		$response = json_decode(curl_exec($curl));
+		//Consulto el precio para la comuna seleccionada 
+		
+		$postPrice = wp_remote_post('https://apigw.bluex.cl/api/legacy/pricing/v1', array(
+			'method'  => 'POST',
+			'headers' => array(
+				'Content-Type' => 'application/json',
+				'apikey' => $userData['tracking_bxkey'],
+				'BX-TOKEN' => $userData['tracking_token']
+			),
+			'body'        => '{
+				"from": {
+					"country": "CL",
+					"district": "'.$userData['districtCode'].'"
+				},
+				"to": {
+					"country": "CL",
+					"state": '.$dadosGeo['regionCode'].',
+					"district": "'.$dadosGeo['districtCode'].'"
+				},
+				"serviceType": "'.$this->service.'",
+				"datosProducto": {
+					"producto": "P",
+					"familiaProducto": "PAQU",
+					"bultos": '.json_encode($bultos).'
+				  }
+			}'
+		));  
+  
+		$response = json_decode($postPrice['body']);  
 
 		$shipping->Codigo = $this->service;
 		$shipping->Valor = (int) $response->data->flete;

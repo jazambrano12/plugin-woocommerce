@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WC_Correios_REST_API class.
+ * WC_Correios_RESTAPI class.
  */
-class WC_Correios_REST_API {
+class WC_Correios_RESTAPI {
 
 	/**
 	 * Init REST API actions.
@@ -36,7 +36,7 @@ class WC_Correios_REST_API {
 	 * @return array
 	 */
 	public function legacy_orders_response( $data, $order, $fields ) {
-		$data['correios_tracking_code'] = implode( ',', wc_correios_get_tracking_codes( $order ) );
+		$data['correios_tracking_code'] = implode( ',', wc_correios_getTrackingCodes( $order ) );
 
 		if ( $fields ) {
 			$data = WC()->api->WC_API_Customers->filter_response_fields( $data, $order, $fields );
@@ -53,7 +53,7 @@ class WC_Correios_REST_API {
 	 */
 	public function legacy_orders_update( $order_id, $data ) {
 		if ( isset( $data['correios_tracking_code'] ) ) {
-			wc_correios_update_tracking_code( $order_id, $data['correios_tracking_code'] );
+			wc_correios_updateTrackingCode( $order_id, $data['correios_tracking_code'] );
 		}
 	}
 
@@ -89,7 +89,7 @@ class WC_Correios_REST_API {
 	 * @return string
 	 */
 	public function get_tracking_code_callback( $data, $field, $request ) {
-		return implode( ',', wc_correios_get_tracking_codes( $data['id'] ) );
+		return implode( ',', wc_correios_getTrackingCodes( $data['id'] ) );
 	}
 
 	/**
@@ -105,8 +105,8 @@ class WC_Correios_REST_API {
 			return;
 		}
 
-		return wc_correios_update_tracking_code( $object->ID, $value );
+		return wc_correios_updateTrackingCode( $object->ID, $value );
 	}
 }
 
-new WC_Correios_REST_API();
+new WC_Correios_RESTAPI();

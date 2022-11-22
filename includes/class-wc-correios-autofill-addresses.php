@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Correios autofill addresses class.
  */
-class WC_Correios_Autofill_Addresses {
+class WC_Correios_AutofillAddresses {
 
 	/**
 	 * Table name.
@@ -96,7 +96,7 @@ class WC_Correios_Autofill_Addresses {
 	public static function get_address( $postcode ) {
 		global $wpdb;
 
-		$postcode = wc_correios_sanitize_postcode( $postcode );
+		$postcode = wc_correios_sanitizePostcode( $postcode );
 
 		if ( empty( $postcode ) || 8 !== strlen( $postcode ) ) {
 			return null;
@@ -207,7 +207,7 @@ class WC_Correios_Autofill_Addresses {
 		$address = null;
 
 		try {
-			$soap     = new WC_Correios_Soap_Client( self::get_tracking_addresses_webservice_url() );
+			$soap     = new WC_Correios_SoapClient( self::get_tracking_addresses_webservice_url() );
 			$response = $soap->consultaCEP( array( 'cep' => $postcode ) );
 			$data     = $response->return;
 			$address  = new stdClass();
@@ -258,7 +258,7 @@ class WC_Correios_Autofill_Addresses {
 			exit;
 		}
 
-		$postcode = wc_correios_sanitize_postcode( wp_unslash( $_GET['postcode'] ) ); // WPCS: input var okay, CSRF ok.
+		$postcode = wc_correios_sanitizePostcode( wp_unslash(  $_GET['postcode'] ) ); // WPCS: input var okay, CSRF ok.
 
 		if ( empty( $postcode ) || 8 !== strlen( $postcode ) ) {
 			wp_send_json_error( array( 'message' => __( 'Invalid postcode.', 'woocommerce-correios' ) ) );
@@ -319,4 +319,4 @@ class WC_Correios_Autofill_Addresses {
 	}
 }
 
-new WC_Correios_Autofill_Addresses();
+new WC_Correios_AutofillAddresses();

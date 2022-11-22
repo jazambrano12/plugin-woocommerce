@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * PAC shipping method class.
  */
-class WC_Correios_Shipping_PAC extends WC_Correios_Shipping {
+class WC_Correios_ShippingPAC extends WC_Correios_Shipping {
 
 	/**
 	 * Service code.

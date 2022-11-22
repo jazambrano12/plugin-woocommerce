@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Correios Tracking code email.
  */
-class WC_Correios_Tracking_Email extends WC_Email {
+class WC_Correios_TrackingEmail extends WC_Email {
 
 	/**
 	 * Initialize tracking template.
@@ -172,7 +172,7 @@ class WC_Correios_Tracking_Email extends WC_Email {
 			}
 
 			if ( empty( $tracking_code ) ) {
-				$tracking_codes = wc_correios_get_tracking_codes( $order );
+				$tracking_codes = wc_correios_getTrackingCodes( $order );
 			} else {
 				$tracking_codes = array( $tracking_code );
 			}
@@ -236,4 +236,4 @@ class WC_Correios_Tracking_Email extends WC_Email {
 	}
 }
 
-return new WC_Correios_Tracking_Email();
+return new WC_Correios_TrackingEmail();

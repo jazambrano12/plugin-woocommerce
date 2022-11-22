@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Correios tracking history class.
  */
-class WC_Correios_Tracking_History {
+class WC_Correios_TrackingHistory {
 
 	/**
 	 * Tracking webservice URL.
@@ -89,7 +89,7 @@ class WC_Correios_Tracking_History {
 		) );
 
 		try {
-			$soap     = new WC_Correios_Soap_Client( $this->get_tracking_history_webservice_url() );
+			$soap     = new WC_Correios_SoapClient( $this->get_tracking_history_webservice_url() );
 			$response = $soap->buscaEventos( $args );
 
 			// Handle Correios multiple formats response.
@@ -144,7 +144,7 @@ class WC_Correios_Tracking_History {
 	public function view( $order ) {
 		$objects = array();
 
-		$tracking_codes = wc_correios_get_tracking_codes( $order );
+		$tracking_codes = wc_correios_getTrackingCodes( $order );
 
 		// Check if exist a tracking code for the order.
 		if ( empty( $tracking_codes ) ) {
@@ -189,4 +189,4 @@ class WC_Correios_Tracking_History {
 	}
 }
 
-new WC_Correios_Tracking_History();
+new WC_Correios_TrackingHistory();

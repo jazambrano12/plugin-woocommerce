@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * This is a abstract method with default options for all methods.
  */
-abstract class WC_Correios_Shipping_Impresso extends WC_Correios_Shipping_Carta {
+abstract class WC_Correios_ShippingImpresso extends WC_Correios_ShippingCarta {
 
 	/**
 	 * National Registry cost.

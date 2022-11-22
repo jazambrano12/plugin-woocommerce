@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Impresso Urgente shipping method class.
  */
-class WC_Correios_Shipping_Impresso_Urgente extends WC_Correios_Shipping_Impresso {
+class WC_Correios_ShippingImpressoUrgente extends WC_Correios_ShippingImpresso {
 
 	/**
 	 * Weight limit for this shipping method.

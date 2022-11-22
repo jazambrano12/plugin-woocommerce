@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Default Correios Carta shipping method abstract class.
  */
-abstract class WC_Correios_Shipping_Carta extends WC_Correios_Shipping {
+abstract class WC_Correios_ShippingCarta extends WC_Correios_Shipping {
 
 	/**
 	 * Initialize Carta Registrada.

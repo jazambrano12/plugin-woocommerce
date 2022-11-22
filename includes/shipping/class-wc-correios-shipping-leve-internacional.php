@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Leve Internacional shipping method class.
  */
-class WC_Correios_Shipping_Leve_Internacional extends WC_Correios_Shipping_International {
+class WC_Correios_ShippingLeveInternacional extends WC_Correios_ShippingInternational {
 
 	/**
 	 * Service code.

@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WC_Correios_Soap_Client class.
+ * WC_Correios_SoapClient class.
  */
-class WC_Correios_Soap_Client extends SoapClient {
+class WC_Correios_SoapClient extends SoapClient {
 
 	/**
 	 * SoapClient construct.

@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Legacy Correios shipping method class.
  */
-class WC_Correios_Shipping_Legacy extends WC_Shipping_Method {
+class WC_Correios_ShippingLegacy extends WC_Shipping_Method {
 
 	/**
 	 * Initialize the Correios shipping method.
@@ -387,7 +387,7 @@ class WC_Correios_Shipping_Legacy extends WC_Shipping_Method {
 
 				$name          = $this->get_service_name( (string) $shipping->Codigo );
 				$error_number  = (string) $shipping->Erro;
-				$error_message = wc_correios_get_error_message( $error_number );
+				$error_message = wc_correiosGetErrorMessage( $error_number );
 				$errors[ $error_number ] = array(
 					'error'   => $error_message,
 					'number'  => $error_number,
@@ -398,8 +398,8 @@ class WC_Correios_Shipping_Legacy extends WC_Shipping_Method {
 				}
 
 				// Set the shipping rates.
-				$label = ( 'yes' == $this->display_date ) ? wc_correios_get_estimating_delivery( $name, (int) $shipping->PrazoEntrega, $this->get_additional_time( $package ) ) : $name;
-				$cost  = wc_correios_normalize_price( esc_attr( (string) $shipping->Valor ) );
+				$label = ( 'yes' == $this->display_date ) ? wc_correios_getEstimatingDelivery( $name, (int) $shipping->PrazoEntrega, $this->get_additional_time( $package ) ) : $name;
+				$cost  = wc_correios_normalizePrice( esc_attr( (string) $shipping->Valor ) );
 
 				// Exit if don't have price.
 				if ( 0 === intval( $cost ) ) {

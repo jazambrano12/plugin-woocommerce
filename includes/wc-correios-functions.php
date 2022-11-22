@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return SimpleXMLElement|bool
  */
-function wc_correios_safe_load_xml( $source, $options = 0 ) {
+function wc_correios_safeLoadXml( $source, $options = 0 ) {
 	$old = null;
 
 	if ( function_exists( 'libxml_disable_entity_loader' ) ) {
@@ -53,7 +53,7 @@ function wc_correios_safe_load_xml( $source, $options = 0 ) {
  *
  * @return string
  */
-function wc_correios_sanitize_postcode( $postcode ) {
+function wc_correios_sanitizePostcode( $postcode ) {
 	return preg_replace( '([^0-9])', '', sanitize_text_field( $postcode ) );
 }
 
@@ -66,7 +66,7 @@ function wc_correios_sanitize_postcode( $postcode ) {
  *
  * @return string
  */
-function wc_correios_get_estimating_delivery( $name, $days, $additional_days = 0 ) {
+function wc_correios_getEstimatingDelivery( $name, $days, $additional_days = 0 ) {
 	$total = intval( $days ) + intval( $additional_days );
 
 	if ( $total > 0 ) {
@@ -84,7 +84,7 @@ function wc_correios_get_estimating_delivery( $name, $days, $additional_days = 0
  *
  * @return string
  */
-function wc_correios_normalize_price( $value ) {
+function wc_correios_normalizePrice( $value ) {
 	$value = str_replace( '.', '', $value );
 	$value = str_replace( ',', '.', $value );
 
@@ -98,7 +98,7 @@ function wc_correios_normalize_price( $value ) {
  *
  * @return string
  */
-function wc_correios_get_error_message( $code ) {
+function wc_correiosGetErrorMessage( $code ) {
 	$code = (string) $code;
 
 	$messages = apply_filters( 'woocommerce_correios_available_error_messages', array(
@@ -117,9 +117,9 @@ function wc_correios_get_error_message( $code ) {
  * @param WC_Order $order         Order data.
  * @param string   $tracking_code The Correios tracking code.
  */
-function wc_correios_trigger_tracking_code_email( $order, $tracking_code ) {
+function wc_correios_triggerTrackingCodeEmail( $order, $tracking_code ) {
 	$mailer       = WC()->mailer();
-	$notification = $mailer->emails['WC_Correios_Tracking_Email'];
+	$notification = $mailer->emails['WC_Correios_TrackingEmail'];
 
 	if ( 'yes' === $notification->enabled ) {
 		if ( method_exists( $order, 'get_id' ) ) {
@@ -137,7 +137,7 @@ function wc_correios_trigger_tracking_code_email( $order, $tracking_code ) {
  *
  * @return array
  */
-function wc_correios_get_tracking_codes( $order ) {
+function wc_correios_getTrackingCodes( $order ) {
 	if ( is_numeric( $order ) ) {
 		$order = wc_get_order( $order );
 	}
@@ -160,7 +160,7 @@ function wc_correios_get_tracking_codes( $order ) {
  *
  * @return bool
  */
-function wc_correios_update_tracking_code( $order, $tracking_code, $remove = false ) {
+function wc_correios_updateTrackingCode( $order, $tracking_code, $remove = false ) {
 	$tracking_code = sanitize_text_field( $tracking_code );
 
 	// Get order instance.
@@ -200,7 +200,7 @@ function wc_correios_update_tracking_code( $order, $tracking_code, $remove = fal
 		$order->add_order_note( sprintf( __( 'Agregar BlueX tracking code: %s', 'woocommerce-correios' ), $tracking_code ) );
 
 		// Send email notification.
-		wc_correios_trigger_tracking_code_email( $order, $tracking_code );
+		wc_correios_triggerTrackingCodeEmail( $order, $tracking_code );
 
 		return true;
 	} elseif ( $remove && in_array( $tracking_code, $tracking_codes, true ) ) {
@@ -234,6 +234,6 @@ function wc_correios_update_tracking_code( $order, $tracking_code, $remove = fal
  *
  * @return stdClass
  */
-function wc_correios_get_address_by_postcode( $postcode ) {
-	return WC_Correios_Autofill_Addresses::get_address( $postcode );
+function wc_correios_getAddressByPostcode( $postcode ) {
+	return WC_Correios_AutofillAddresses::get_address( $postcode );
 }
