@@ -2,9 +2,7 @@
 /**
  * Tracking codes.
  *
- * @author  Claudio_Sanches
  * @package WooCommerce_Correios/Templates
- * @version 3.3.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

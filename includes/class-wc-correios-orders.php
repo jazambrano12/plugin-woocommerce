@@ -3,8 +3,6 @@
  * WooCommerce orders integration
  *
  * @package WooCommerce_Correios/Classes/Orders
- * @since   3.7.0
- * @version 3.7.0
  */
 
 defined( 'ABSPATH' ) || exit;

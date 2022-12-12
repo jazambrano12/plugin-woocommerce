@@ -3,7 +3,6 @@
  *
  * Autofill address with postcodes.
  *
- * Version: 3.0.0
  */
 
 jQuery( function( $ ) {

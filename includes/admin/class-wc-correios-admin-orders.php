@@ -3,8 +3,6 @@
  * Admin orders actions.
  *
  * @package WooCommerce_Correios/Admin/Orders
- * @since   3.0.0
- * @version 3.4.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

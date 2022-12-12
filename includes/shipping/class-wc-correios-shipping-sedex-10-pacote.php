@@ -3,8 +3,6 @@
  * Correios SEDEX 10 Pacote shipping method.
  *
  * @package WooCommerce_Correios/Classes/Shipping
- * @since   3.0.0
- * @version 3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

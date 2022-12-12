@@ -3,8 +3,6 @@
  * Correios Impresso Normal shipping method.
  *
  * @package WooCommerce_Correios/Classes/Shipping
- * @since   3.1.0
- * @version 3.1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

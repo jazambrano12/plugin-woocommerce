@@ -3,8 +3,6 @@
  * Abstract Correios Impresso shipping method.
  *
  * @package WooCommerce_Correios/Abstracts
- * @since   3.1.0
- * @version 3.1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

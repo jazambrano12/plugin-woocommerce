@@ -3,8 +3,6 @@
  * Correios integration with the REST API.
  *
  * @package WooCommerce_Correios/Classes
- * @since   3.0.0
- * @version 3.2.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

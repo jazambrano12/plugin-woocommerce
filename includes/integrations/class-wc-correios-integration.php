@@ -3,8 +3,6 @@
  * Correios integration.
  *
  * @package WooCommerce_Correios/Classes/Integration
- * @since   3.0.0
- * @version 3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

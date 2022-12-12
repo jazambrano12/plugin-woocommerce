@@ -3,8 +3,6 @@
  * WooCommerce cart integration
  *
  * @package WooCommerce_Correios/Classes/Cart
- * @since   3.7.0
- * @version 3.7.0
  */
 
 defined( 'ABSPATH' ) || exit;

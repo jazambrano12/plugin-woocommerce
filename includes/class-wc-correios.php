@@ -3,8 +3,6 @@
  * Correios
  *
  * @package WooCommerce_Correios/Classes
- * @since   3.6.0
- * @version 3.6.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

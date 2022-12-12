@@ -2,9 +2,7 @@
 /**
  * Tracking code plain email notification.
  *
- * @author  Claudio_Sanches
  * @package WooCommerce_Correios/Templates
- * @version 3.2.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -3,8 +3,6 @@
  * Correios Tracking History.
  *
  * @package WooCommerce_Correios/Classes/Tracking
- * @since   3.0.0
- * @version 3.2.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
