@@ -286,7 +286,7 @@ class WC_Correios_AutofillAddresses {
 		if ( empty( $version ) ) {
 			self::create_database();
 
-			update_option( 'woocommerce_correios_autofill_addresses_db_version', '1.0.0' );
+			update_option( 'woocommerce_correios_autofill_addresses_db_version', '1.0.1' );
 		}
 	}
 

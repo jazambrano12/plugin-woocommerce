@@ -3,7 +3,7 @@ Contributors: @soporteblue
 Tags: blue express rates, live rates, shipping rates, blue express, woocommerce shipping
 Requires at least: 4.5
 Tested up to: 6.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 7.2
 Requires PHP: 7.0
 License: GPLv2 or later
@@ -24,5 +24,5 @@ create a rest api user, this must be in the advanced options and deliver it to B
 
 = 1.0.0 - 2022-11-03 =
 * First release!
-= 1.0.0 - 2022-12-15 =
+= 1.0.1 - 2022-12-15 =
 * Changes requested 
