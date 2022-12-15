@@ -55,7 +55,7 @@ class WC_Correios_ShippingImpressoNormal extends WC_Correios_ShippingImpresso {
 	 *
 	 * @return float
 	 */
-	protected function get_additional_costs_per_kg() {
+	protected function get_additional_costsPerKg() {
 		return apply_filters( 'woocommerce_correios_impresso_additional_cost_per_kg',
 			$this->additional_cost_per_kg, $this->id, $this->instance_id );
 	}
@@ -139,7 +139,7 @@ class WC_Correios_ShippingImpressoNormal extends WC_Correios_ShippingImpresso {
 				$additional_weight_gs = $weight;
 			}
 
-			$additional_costs_per_kg = $this->get_additional_costs_per_kg();
+			$additional_costs_per_kg = $this->get_additional_costsPerKg();
 
 			foreach ( $this->get_costs() as $cost_weights => $costs ) {
 				if ( $additional_weight_gs <= $cost_weights ) {

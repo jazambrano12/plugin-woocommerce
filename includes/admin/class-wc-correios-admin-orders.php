@@ -19,8 +19,8 @@ class WC_Correios_AdminOrders {
 	 */
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'register_metabox' ) );
-		add_filter( 'woocommerce_resend_order_emails_available', array( $this, 'resend_tracking_code_email' ) );
-		add_action( 'wp_ajax_woocommerce_correios_add_tracking_code', array( $this, 'ajax_add_tracking_code' ) );
+		add_filter( 'woocommerce_resend_order_emails_available', array( $this, 'resend_tracking_codeEmail' ) );
+		add_action( 'wp_ajax_woocommerce_correios_add_tracking_code', array( $this, 'ajax_add_trackingCode' ) );
 		add_action( 'wp_ajax_woocommerce_correios_remove_tracking_code', array( $this, 'ajax_remove_tracking_code' ) );
 
 		if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.0.0', '>=' ) ) {
@@ -118,7 +118,7 @@ class WC_Correios_AdminOrders {
 	 *
 	 * @return array
 	 */
-	public function resend_tracking_code_email( $emails ) {
+	public function resend_tracking_codeEmail( $emails ) {
 		$emails[] = 'correios_tracking';
 
 		return $emails;
@@ -127,7 +127,7 @@ class WC_Correios_AdminOrders {
 	/**
 	 * Ajax - Add tracking code.
 	 */
-	public function ajax_add_tracking_code() {
+	public function ajax_add_trackingCode() {
 		check_ajax_referer( 'woocommerce-correios-add-tracking-code', 'security' );
 
 		$args = filter_input_array( INPUT_POST, array(

@@ -59,7 +59,7 @@ class WC_Correios_AutofillAddresses {
 	 *
 	 * @return string
 	 */
-	protected static function get_tracking_addresses_webservice_url() {
+	protected static function get_tracking_addressesWebserviceUrl() {
 		return apply_filters( 'woocommerce_correios_addresses_webservice_url', self::$_webservice_url );
 	}
 
@@ -205,7 +205,7 @@ class WC_Correios_AutofillAddresses {
 		$address = null;
 
 		try {
-			$soap     = new WC_Correios_SoapClient( self::get_tracking_addresses_webservice_url() );
+			$soap     = new WC_Correios_SoapClient( self::get_tracking_addressesWebserviceUrl() );
 			$response = $soap->consultaCEP( array( 'cep' => $postcode ) );
 			$data     = $response->return;
 			$address  = new stdClass();

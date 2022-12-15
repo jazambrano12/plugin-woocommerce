@@ -46,14 +46,14 @@ class WC_Correios_Integration extends WC_Integration {
 
 		// Tracking history actions.
 		add_filter( 'woocommerce_correios_enable_tracking_history', array( $this, 'setup_tracking_history' ), 10 );
-		add_filter( 'woocommerce_correios_tracking_user_data', array( $this, 'setup_tracking_user_data' ), 10 );
+		add_filter( 'woocommerce_correios_tracking_user_data', array( $this, 'setup_tracking_userData' ), 10 );
 		add_filter( 'woocommerce_correios_enable_tracking_debug', array( $this, 'setup_tracking_debug' ), 10 );
 
 		// Autofill address actions.
 		add_filter( 'woocommerce_correios_enable_autofill_addresses', array( $this, 'setup_autofill_addresses' ), 10 );
-		add_filter( 'woocommerce_correios_enable_autofill_addresses_debug', array( $this, 'setup_autofill_addresses_debug' ), 10 );
-		add_filter( 'woocommerce_correios_autofill_addresses_validity_time', array( $this, 'setup_autofill_addresses_validity_time' ), 10 );
-		add_filter( 'woocommerce_correios_autofill_addresses_force_autofill', array( $this, 'setup_autofill_addresses_force_autofill' ), 10 );
+		add_filter( 'woocommerce_correios_enable_autofill_addresses_debug', array( $this, 'setup_autofill_addressesDebug' ), 10 );
+		add_filter( 'woocommerce_correios_autofill_addresses_validity_time', array( $this, 'setup_autofill_addressesValidityTime' ), 10 );
+		add_filter( 'woocommerce_correios_autofill_addresses_force_autofill', array( $this, 'setup_autofill_addressesForceAutofill' ), 10 );
 		add_action( 'wp_ajax_correios_autofill_addresses_empty_database', array( $this, 'ajax_empty_database' ) );
 	}
 
@@ -184,7 +184,7 @@ class WC_Correios_Integration extends WC_Integration {
 	 * @param array $user_data User data.
 	 * @return array
 	 */
-	public function setup_tracking_user_data( $user_data ) {
+	public function setup_tracking_userData( $user_data ) {
 		if ( $this->tracking_login && $this->tracking_password ) {
 			$user_data = array(
 				'login'    => $this->tracking_login,
@@ -218,7 +218,7 @@ class WC_Correios_Integration extends WC_Integration {
 	 *
 	 * @return bool
 	 */
-	public function setup_autofill_addresses_debug() {
+	public function setup_autofill_addressesDebug() {
 		return 'yes' === $this->autofill_debug;
 	}
 
@@ -227,7 +227,7 @@ class WC_Correios_Integration extends WC_Integration {
 	 *
 	 * @return string
 	 */
-	public function setup_autofill_addresses_validity_time() {
+	public function setup_autofill_addressesValidityTime() {
 		return $this->autofill_validity;
 	}
 
@@ -236,7 +236,7 @@ class WC_Correios_Integration extends WC_Integration {
 	 *
 	 * @return string
 	 */
-	public function setup_autofill_addresses_force_autofill() {
+	public function setup_autofill_addressesForceAutofill() {
 		return $this->autofill_force;
 	}
 

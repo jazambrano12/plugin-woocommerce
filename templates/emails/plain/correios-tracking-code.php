@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-echo "= " .  $email_heading  . " =\n\n";
+echo "= " .  esc_html( $email_heading )  . " =\n\n";
 
 echo  wptexturize( $tracking_message ). "\n\n";
 

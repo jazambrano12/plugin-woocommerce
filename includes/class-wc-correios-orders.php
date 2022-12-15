@@ -16,8 +16,8 @@ class WC_Correios_Orders {
 	 * Init orders actions.
 	 */
 	public function __construct() {
-		add_filter( 'woocommerce_order_shipping_method', array( $this, 'shipping_method_delivery_forecast' ), 100, 2 );
-		add_filter( 'woocommerce_order_item_display_meta_key', array( $this, 'item_display_delivery_forecast' ), 100, 2 );
+		add_filter( 'woocommerce_order_shipping_method', array( $this, 'shipping_method_deliveryForecast' ), 100, 2 );
+		add_filter( 'woocommerce_order_item_display_meta_key', array( $this, 'item_display_deliveryForecast' ), 100, 2 );
 	}
 
 	/**
@@ -27,7 +27,7 @@ class WC_Correios_Orders {
 	 * @param WC_Order $order Order data.
 	 * @return string
 	 */
-	public function shipping_method_delivery_forecast( $name, $order ) {
+	public function shipping_method_deliveryForecast( $name, $order ) {
 		$names = array();
 
 		foreach ( $order->get_shipping_methods() as $shipping_method ) {
@@ -51,7 +51,7 @@ class WC_Correios_Orders {
 	 * @param  WC_Meta_Data $meta        Meta data.
 	 * @return string
 	 */
-	public function item_display_delivery_forecast( $display_key, $meta ) {
+	public function item_display_deliveryForecast( $display_key, $meta ) {
 		return '_delivery_forecast' === $meta->key ? __( 'Delivery forecast', 'woocommerce-correios' ) : $display_key;
 	}
 }

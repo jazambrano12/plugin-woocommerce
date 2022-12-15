@@ -33,7 +33,7 @@ class WC_Correios_TrackingHistory {
 	 *
 	 * @return string
 	 */
-	protected function get_tracking_history_webservice_url() {
+	protected function get_tracking_historyWebserviceUrl() {
 		return apply_filters( 'woocommerce_correios_tracking_webservice_url', $this->_webservice_url );
 	}
 
@@ -87,7 +87,7 @@ class WC_Correios_TrackingHistory {
 		) );
 
 		try {
-			$soap     = new WC_Correios_SoapClient( $this->get_tracking_history_webservice_url() );
+			$soap     = new WC_Correios_SoapClient( $this->get_tracking_historyWebserviceUrl() );
 			$response = $soap->buscaEventos( $args );
 
 			// Handle Correios multiple formats response.

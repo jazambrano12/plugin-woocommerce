@@ -47,7 +47,7 @@ class WC_Correios_Install {
 	/**
 	 * Upgrade to 3.0.0 while using WooCommerce 2.6.0.
 	 */
-	public static function upgrade_300_from_wc_260() {
+	public static function upgrade_300_fromWc260() {
 		$old_options = get_option( 'woocommerce_correios_settings' );
 		if ( $old_options ) {
 			if ( isset( $old_options['tracking_history'] ) ) {

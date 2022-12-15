@@ -110,7 +110,7 @@ class WC_Correios_ShippingCartaRegistrada extends WC_Correios_ShippingCarta {
 	 *
 	 * @return string
 	 */
-	protected function get_type_of_cost() {
+	protected function get_type_ofCost() {
 		if ( 'yes' === $this->receipt_notice && 'yes' === $this->own_hands ) {
 			return 'AR+MP';
 		} elseif ( 'yes' === $this->receipt_notice ) {
@@ -130,7 +130,7 @@ class WC_Correios_ShippingCartaRegistrada extends WC_Correios_ShippingCarta {
 	 * @return float
 	 */
 	protected function get_shipping_cost( $package ) {
-		$type = $this->get_type_of_cost();
+		$type = $this->get_type_ofCost();
 		$cost = 0;
 
 		if ( 'yes' === $this->debug ) {

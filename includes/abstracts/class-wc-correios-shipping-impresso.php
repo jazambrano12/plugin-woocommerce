@@ -134,7 +134,7 @@ abstract class WC_Correios_ShippingImpresso extends WC_Correios_ShippingCarta {
 				'desc_tip'    => true,
 				'default'     => '',
 				'class'       => 'wc-enhanced-select',
-				'options'     => $this->get_shipping_classes_options(),
+				'options'     => $this->get_shipping_classesOptions(),
 			),
 			'registry_type' => array(
 				'title'       => __( 'Registry Type', 'woocommerce-correios' ),

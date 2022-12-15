@@ -80,7 +80,7 @@ class WC_Correios_TrackingEmail extends WC_Email {
 				'description' => __( 'Choose which format of email to send.', 'woocommerce-correios' ),
 				'default'     => 'html',
 				'class'       => 'email_type wc-enhanced-select',
-				'options'     => $this->get_custom_email_type_options(),
+				'options'     => $this->get_custom_emailTypeOptions(),
 				'desc_tip'    => true,
 			),
 		);
@@ -91,7 +91,7 @@ class WC_Correios_TrackingEmail extends WC_Email {
 	 *
 	 * @return array
 	 */
-	protected function get_custom_email_type_options() {
+	protected function get_custom_emailTypeOptions() {
 		if ( method_exists( $this, 'get_email_type_options' ) ) {
 			return $this->get_email_type_options();
 		}
@@ -122,7 +122,7 @@ class WC_Correios_TrackingEmail extends WC_Email {
 	 *
 	 * @return string
 	 */
-	public function get_tracking_code_url( $tracking_code ) {
+	public function get_tracking_codeUrl( $tracking_code ) {
 		$url = sprintf( '<a href="%s#wc-correios-tracking">%s</a>', $this->object->get_view_order_url(), $tracking_code );
 
 		return apply_filters( 'woocommerce_correios_email_tracking_core_url', $url, $tracking_code, $this->object );
@@ -139,7 +139,7 @@ class WC_Correios_TrackingEmail extends WC_Email {
 		$html = '<ul>';
 
 		foreach ( $tracking_codes as $tracking_code ) {
-			$html .= '<li>' . $this->get_tracking_code_url( $tracking_code ) . '</li>';
+			$html .= '<li>' . $this->get_tracking_codeUrl( $tracking_code ) . '</li>';
 		}
 
 		$html .= '</ul>';

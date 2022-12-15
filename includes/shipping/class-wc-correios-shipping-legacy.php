@@ -362,7 +362,7 @@ class WC_Correios_ShippingLegacy extends WC_Shipping_Method {
 	 *
 	 * @return array
 	 */
-	protected function get_accepted_error_codes() {
+	protected function get_accepted_errorCodes() {
 		$codes   = apply_filters( 'woocommerce_correios_accepted_error_codes', array( '-33', '-3', '010', '011' ) );
 		$codes[] = '0';
 
@@ -393,7 +393,7 @@ class WC_Correios_ShippingLegacy extends WC_Shipping_Method {
 					'number'  => $error_number,
 				);
 
-				if ( ! in_array( $error_number, $this->get_accepted_error_codes() ) ) {
+				if ( ! in_array( $error_number, $this->get_accepted_errorCodes() ) ) {
 					continue;
 				}
 

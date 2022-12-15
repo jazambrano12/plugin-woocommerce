@@ -56,7 +56,7 @@ abstract class WC_Correios_ShippingCarta extends WC_Correios_Shipping {
 	 *
 	 * @return array
 	 */
-	protected function get_shipping_classes_options() {
+	protected function get_shipping_classesOptions() {
 		$shipping_classes = WC()->shipping->get_shipping_classes();
 		$options          = array(
 			'' => __( '-- Select a shipping class --', 'woocommerce-correios' ),
@@ -99,7 +99,7 @@ abstract class WC_Correios_ShippingCarta extends WC_Correios_Shipping {
 				'desc_tip'    => true,
 				'default'     => '',
 				'class'       => 'wc-enhanced-select',
-				'options'     => $this->get_shipping_classes_options(),
+				'options'     => $this->get_shipping_classesOptions(),
 			),
 			'show_delivery_time' => array(
 				'title'       => __( 'Delivery Time', 'woocommerce-correios' ),

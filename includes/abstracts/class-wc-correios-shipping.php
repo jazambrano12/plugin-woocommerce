@@ -434,7 +434,7 @@ abstract class WC_Correios_Shipping extends WC_Shipping_Method {
 	 *
 	 * @return array
 	 */
-	protected function get_accepted_error_codes() {
+	protected function get_accepted_errorCodes() {
 		$codes   = apply_filters( 'woocommerce_correios_accepted_error_codes', array( '-33', '-3', '010', '011' ) );
 		$codes[] = '0';
 		$codes[] = '';
@@ -448,7 +448,7 @@ abstract class WC_Correios_Shipping extends WC_Shipping_Method {
 	 * @param  array $package Cart package.
 	 * @return bool
 	 */
-	protected function has_only_selected_shipping_class( $package ) {
+	protected function has_only_selectedShippingClass( $package ) {
 		$only_selected = true;
 
 		if ( -1 === $this->shipping_class_id ) {
@@ -482,7 +482,7 @@ abstract class WC_Correios_Shipping extends WC_Shipping_Method {
 
 
 		// Check for shipping classes.
-		if ( ! $this->has_only_selected_shipping_class( $package ) ) {
+		if ( ! $this->has_only_selectedShippingClass( $package ) ) {
 			return;
 		}
 
@@ -495,7 +495,7 @@ abstract class WC_Correios_Shipping extends WC_Shipping_Method {
 		$error_number = (string) $shipping->Erro; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar
 
 		// Exit if have errors.
-		if ( ! in_array( $error_number, $this->get_accepted_error_codes(), true ) ) {
+		if ( ! in_array( $error_number, $this->get_accepted_errorCodes(), true ) ) {
 			return;
 		}
 

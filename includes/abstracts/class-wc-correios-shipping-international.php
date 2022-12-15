@@ -97,7 +97,7 @@ abstract class WC_Correios_ShippingInternational extends WC_Correios_Shipping {
 				'desc_tip'    => true,
 				'default'     => '',
 				'class'       => 'wc-enhanced-select',
-				'options'     => $this->get_shipping_classes_options(),
+				'options'     => $this->get_shipping_classesOptions(),
 			),
 			'show_delivery_time' => array(
 				'title'       => __( 'Delivery Time', 'woocommerce-correios' ),
@@ -180,7 +180,7 @@ abstract class WC_Correios_ShippingInternational extends WC_Correios_Shipping {
 		}
 
 		// Check for shipping classes.
-		if ( ! $this->has_only_selected_shipping_class( $package ) ) {
+		if ( ! $this->has_only_selectedShippingClass( $package ) ) {
 			return;
 		}
 
