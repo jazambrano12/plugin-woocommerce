@@ -24,3 +24,5 @@ create a rest api user, this must be in the advanced options and deliver it to B
 
 = 1.0.0 - 2022-11-03 =
 * First release!
+= 1.0.0 - 2022-12-15 =
+* Changes requested 
